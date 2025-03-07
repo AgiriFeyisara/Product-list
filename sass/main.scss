@@ -1,22 +1,171 @@
 @import "reset.scss";
-.btn {
-  padding: 10px;
-  border-radius: 15px;
+@import "variable.scss";
+@import "mixin.scss";
+// Define mixins
+// Function to lighten or darken colors
+@function adjust-color($color, $amount: 10%) {
+  @return mix(white, $color, $amount);
 }
 
-// .product {
-//   //   display: inline-block;
-//   //   //   width: 200px;
-//   //   //   margin: 10px;
-//   //   text-align: center;
-//   //   border: 1px solid #ccc;
-//   //   padding: 10px;
-// }
-// .product img {
-//   width: 100%;
-//   height: auto;
-// }
-// .products-container {
-//   display: flex;
-//   flex-wrap: wrap;
-// }
+// Function to calculate spacing based on a multiplier
+@function spacing($multiplier) {
+  $base-spacing: 10px;
+  @return $base-spacing * $multiplier;
+}
+
+// Using extends for shared styles
+%btn-common {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+body {
+  padding: spacing(5); // Uses the spacing function
+}
+
+.products {
+  margin-top: spacing(3); // Uses the spacing function
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  @include flex-center(column, left, flex-start);
+  width: 250px;
+  margin: spacing(0.5); // Uses the spacing function
+  text-align: left;
+  padding: 10px;
+}
+
+.product img {
+  width: 90%;
+  // height: auto; // You can uncomment this if needed
+}
+
+.btn {
+  @extend %btn-common;
+  position: relative;
+  bottom: -10px;
+  left: 32px;
+  margin-top: -30px;
+}
+
+.cart {
+  width: 15px;
+  height: 15px;
+}
+
+.cart1 {
+  white-space: nowrap;
+}
+
+.img1 {
+  width: 180px;
+  height: 180px;
+}
+
+.p1 {
+  font-size: 15px;
+  color: $text-color;
+}
+
+.text {
+  margin-top: spacing(3); // Uses the spacing function
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.p2 {
+  color: $price-color;
+}
+
+.h1 {
+  font-size: 18px;
+}
+
+// right-container
+.personal {
+  width: 250px;
+  height: 250px;
+  background-color: hsl(20, 50%, 98%);
+  padding: spacing(2.5); // Uses the spacing function
+
+  .img-item {
+    @include flex-center(column, center, flex-start);
+    gap: spacing(1.5); // Uses the spacing function
+    margin-top: spacing(2); // Uses the spacing function
+  }
+
+  .empty-cart {
+    width: 100px;
+    height: 100px;
+  }
+
+  p {
+    font-size: 12px;
+    color: hsl(12, 20%, 44%);
+    font-weight: map-get($map: $font-weight, $key: bold);
+  }
+
+  h1 {
+    color: $price-color;
+    font-size: 25px;
+  }
+}
+
+.plus-minus-btn {
+  @include button-styles(
+    adjust-color(orange, 15%)
+  ); // Uses the adjust-color function to lighten orange
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin: spacing(0.5); // Uses the spacing function
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center(column, center, flex-start);
+}
+
+.modal-content {
+  background-color: white;
+  padding: spacing(2); // Uses the spacing function
+  border-radius: 10px;
+  width: 350px;
+  text-align: left;
+}
+
+.btn-confirm-order,
+.btn-start-new-order {
+  margin-top: spacing(3); // Uses the spacing function
+  background-color: $price-color;
+  border: none;
+  color: white;
+  padding: spacing(1) 50px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.btn-start-new-order {
+  padding: spacing(1) 100px;
+}
+
+.list {
+  background-color: hsl(14, 25%, 72%);
+  margin-top: spacing(3); // Uses the spacing function
+  line-height: 30px;
+}

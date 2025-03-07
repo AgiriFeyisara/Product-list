@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-
     <link
       rel="icon"
       type="image/png"
@@ -15,22 +13,40 @@
     <title>Product list</title>
   </head>
   <body>
-    <h1>Desserts</h1>
-    <div class="products">
-      <div>
-        <img src="/assets/images/image-waffle-thumbnail.jpg" />
-        <button class="btn">Add to cart</button>
+    <main class="container">
+      <div class="left-container">
+        <h1>Desserts</h1>
+        <div class="products">
+          <!-- Dynamically generated products will appear here -->
+        </div>
       </div>
-      <p>Waffle</p>
-      <h3>Waffle with Berries</h3>
-      <p>$6.50</p>
+      <div class="right-container">
+        <div class="personal">
+          <h1>Your cart (0)</h1>
+          <div class="img-item">
+            <img
+              src="/assets/images/illustration-empty-cart.svg"
+              class="empty-cart"
+            />
+            <p>Your added items will appear here</p>
+          </div>
+          <button class="btn-confirm-order">Confirm Order</button>
+        </div>
+      </div>
+    </main>
+    <!-- Modal -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <h2>Order Confirmed</h2>
+        <p>We hope you enjoyed your order!</p>
+
+        <div class="list">
+          <ul id="orderList"></ul>
+          <p>Total: $<span id="totalPrice">0.00</span></p>
+        </div>
+        <button class="btn-start-new-order">Start New Order</button>
+      </div>
     </div>
-    <!-- <main>
-     
-      <div id="product-list" class="products-container">
-       
-      </div>
-    </main> -->
     <script src="data.js"></script>
     <script src="app.js"></script>
   </body>
