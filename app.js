@@ -1,6 +1,6 @@
 window.onload = function () {
   const productsContainer = document.querySelector(".products");
-  const cartItems = []; // Array to hold items added to the cart
+  const cartItems = [];
   const cartCountElement = document.querySelector(".personal h1");
   const cartImg = document.querySelector(".empty-cart");
   const cartText = document.querySelector(".personal p");
@@ -9,7 +9,6 @@ window.onload = function () {
   const orderList = document.getElementById("orderList");
   const totalPriceElement = document.getElementById("totalPrice");
 
-  // Loop through the products array from data.js
   products.forEach((product) => {
     const productDiv = document.createElement("div");
     productDiv.classList.add("product");
@@ -41,7 +40,7 @@ window.onload = function () {
         (p) => p.id === productId
       );
       if (existingProductIndex === -1) {
-        cartItems.push({ ...product, quantity: 1 }); // Add the product with quantity 1
+        cartItems.push({ ...product, quantity: 1 });
       }
 
       // Update the cart UI
@@ -80,7 +79,7 @@ window.onload = function () {
   document
     .querySelector(".btn-start-new-order")
     .addEventListener("click", () => {
-      cartItems.length = 0; // Clear cart
+      cartItems.length = 0;
       updateCartUI();
       orderModal.style.display = "none";
     });
